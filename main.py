@@ -7,6 +7,7 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QWidget, QTa
 from login_tela import Login_Tela
 from cadastro_tela import Cadastro_Tela
 from tela_principal import Tela_Principal
+from tarefa import Tela_Tarefa
 from pessoa import Pessoa
 from cadastro import Cadastro
 from login import Login
@@ -28,6 +29,7 @@ class Ui_Main(QtWidgets.QWidget):
         self.stack0 = QtWidgets.QMainWindow()
         self.stack1 = QtWidgets.QMainWindow()
         self.stack2 = QtWidgets.QMainWindow()
+        self.stack3 = QtWidgets.QMainWindow()
 
         self.login_tela = Login_Tela()
         self.login_tela.setupUi(self.stack0)
@@ -40,9 +42,13 @@ class Ui_Main(QtWidgets.QWidget):
         self.tela_principal = Tela_Principal()
         self.tela_principal.setupUi(self.stack2)
 
+        self.tarefa = Tela_Tarefa()
+        self.tarefa.setupUi(self.stack3)
+
         self.Qtstack.addWidget(self.stack0)
         self.Qtstack.addWidget(self.stack1)
         self.Qtstack.addWidget(self.stack2)
+        self.Qtstack.addWidget(self.stack3)
 
 class Main(QMainWindow, Ui_Main):
     def __init__(self):
@@ -58,6 +64,10 @@ class Main(QMainWindow, Ui_Main):
         self.cadastro_tela.voltarBotao.clicked.connect(self.returnIndex)
 
         self.tela_principal.pushButton.clicked.connect(self.returnIndex)
+
+        self.tela_principal.Criar.clicked.connect(self.botaoCriar)
+        
+        self.tarefa.cancel.clicked.connect(self.telaPrinc)
 
         pessoal_tarefas = ["Fazer POO2", "Fazer ED2"]
         tarefas_tempo = ["terça, 14", "quinta, 19"]
@@ -136,7 +146,12 @@ class Main(QMainWindow, Ui_Main):
                 
                 self.login_tela.email_linha.clear()
                 self.login_tela.senha_linha.clear()
+
+    def botaoCriar(self):
+        self.Qtstack.setCurrentIndex(3)
     
+    def telaPrinc(self):
+        self.Qtstack.setCurrentIndex(2)
 
     def returnIndex(self):
         self.Qtstack.setCurrentIndex(0)

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>480</width>
-    <height>608</height>
+    <height>399</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,28 +17,11 @@
    <string notr="true">background-color: rgb(54, 54, 54);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>60</y>
-      <width>31</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color:rgb(204, 119, 0);
-font: 75 13pt &quot;MS Shell Dlg 2&quot;;</string>
-    </property>
-    <property name="text">
-     <string>&lt;</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="Title">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>7</y>
+      <x>158</x>
+      <y>8</y>
       <width>71</width>
       <height>41</height>
      </rect>
@@ -71,7 +54,7 @@ font: 75 13pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QLabel" name="Title_2">
     <property name="geometry">
      <rect>
-      <x>90</x>
+      <x>233</x>
       <y>2</y>
       <width>81</width>
       <height>51</height>
@@ -104,36 +87,35 @@ border-radius: 10px;</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLineEdit" name="linha_user">
+   <widget class="QLineEdit" name="title_text">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>10</y>
-      <width>131</width>
+      <x>190</x>
+      <y>90</y>
+      <width>271</width>
       <height>31</height>
      </rect>
     </property>
-    <property name="cursor">
-     <cursorShape>ArrowCursor</cursorShape>
-    </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(204, 119, 0); font: 20px;</string>
-    </property>
-    <property name="text">
-     <string>Username</string>
-    </property>
-    <property name="frame">
-     <bool>false</bool>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
+     <string notr="true">border: 0px;
+background-color: rgb(255, 255, 255);</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="linha_bv">
+   <widget class="QDateEdit" name="data_ed">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>10</y>
+      <x>190</x>
+      <y>160</y>
+      <width>271</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="title_taf">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>90</y>
       <width>151</width>
       <height>31</height>
      </rect>
@@ -145,7 +127,7 @@ border-radius: 10px;</string>
      <string notr="true">color: rgb(204, 119, 0); font: 20px;</string>
     </property>
     <property name="text">
-     <string>Seja Bem-Vindo,</string>
+     <string>Título da Tarefa</string>
     </property>
     <property name="frame">
      <bool>false</bool>
@@ -154,135 +136,98 @@ border-radius: 10px;</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QToolBox" name="Listas">
-    <property name="geometry">
-     <rect>
-      <x>23</x>
-      <y>100</y>
-      <width>431</width>
-      <height>321</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family></family>
-      <pointsize>-1</pointsize>
-      <weight>50</weight>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="mouseTracking">
-     <bool>false</bool>
-    </property>
-    <property name="tabletTracking">
-     <bool>false</bool>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::LeftToRight</enum>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(204, 119, 0); font: 15px, bold;
-border-color: rgb(54, 54, 54);</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Panel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Sunken</enum>
-    </property>
-    <property name="lineWidth">
-     <number>3</number>
-    </property>
-    <property name="midLineWidth">
-     <number>3</number>
-    </property>
-    <property name="currentIndex">
-     <number>0</number>
-    </property>
-    <widget class="QWidget" name="Pessoais">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>425</width>
-       <height>241</height>
-      </rect>
-     </property>
-     <attribute name="label">
-      <string>Pessoais</string>
-     </attribute>
-     <widget class="QTableWidget" name="listaTodo">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>401</width>
-        <height>351</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="Grupo">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>425</width>
-       <height>241</height>
-      </rect>
-     </property>
-     <attribute name="label">
-      <string>Grupo 1</string>
-     </attribute>
-    </widget>
-   </widget>
-   <widget class="QPushButton" name="Tarefas">
+   <widget class="QLineEdit" name="date">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>520</y>
-      <width>93</width>
-      <height>28</height>
+      <y>160</y>
+      <width>161</width>
+      <height>31</height>
      </rect>
     </property>
+    <property name="cursor">
+     <cursorShape>ArrowCursor</cursorShape>
+    </property>
     <property name="styleSheet">
-     <string notr="true">color:rgb(204, 119, 0); font: 15px bold;</string>
+     <string notr="true">color: rgb(204, 119, 0); font: 20px;</string>
     </property>
     <property name="text">
-     <string>TAREFAS</string>
+     <string>Data de Término</string>
+    </property>
+    <property name="frame">
+     <bool>false</bool>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="Criar">
+   <widget class="QComboBox" name="grupos">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>520</y>
-      <width>93</width>
-      <height>28</height>
+      <x>190</x>
+      <y>230</y>
+      <width>271</width>
+      <height>31</height>
      </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color:rgb(204, 119, 0); font: 15px bold;</string>
-    </property>
-    <property name="text">
-     <string>CRIAR</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="Perfil">
+   <widget class="QLineEdit" name="grupo">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>520</y>
-      <width>93</width>
+      <x>20</x>
+      <y>230</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>ArrowCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(204, 119, 0); font: 20px;</string>
+    </property>
+    <property name="text">
+     <string>Grupo</string>
+    </property>
+    <property name="frame">
+     <bool>false</bool>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="cancel">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>310</y>
+      <width>171</width>
       <height>28</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color:rgb(204, 119, 0); font: 15px bold;</string>
+     <string notr="true">color:rgb(204, 119, 0);
+font: 75 13pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
-     <string>PERFIL</string>
+     <string>CANCELAR</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="conf">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>310</y>
+      <width>171</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgb(204, 119, 0);
+font: 75 13pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>CONFIMAR</string>
     </property>
    </widget>
   </widget>
