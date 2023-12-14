@@ -42,7 +42,7 @@
      <string>Task</string>
     </property>
     <property name="textFormat">
-     <enum>Qt::MarkdownText</enum>
+     <enum>Qt::PlainText</enum>
     </property>
     <property name="scaledContents">
      <bool>false</bool>
@@ -78,7 +78,7 @@ border-radius: 10px;</string>
      <string>Hub</string>
     </property>
     <property name="textFormat">
-     <enum>Qt::MarkdownText</enum>
+     <enum>Qt::PlainText</enum>
     </property>
     <property name="scaledContents">
      <bool>false</bool>
@@ -161,16 +161,6 @@ background-color: rgb(255, 255, 255);</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QComboBox" name="grupos">
-    <property name="geometry">
-     <rect>
-      <x>190</x>
-      <y>230</y>
-      <width>271</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLineEdit" name="grupo">
     <property name="geometry">
      <rect>
@@ -230,6 +220,16 @@ font: 75 13pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>CONFIMAR</string>
     </property>
    </widget>
+   <widget class="QLineEdit" name="group_name">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>230</y>
+      <width>261</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -237,7 +237,7 @@ font: 75 13pt &quot;MS Shell Dlg 2&quot;;</string>
      <x>0</x>
      <y>0</y>
      <width>480</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
