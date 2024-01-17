@@ -53,6 +53,33 @@ class Ui_Main(QtWidgets.QWidget):
         self.Qtstack.addWidget(self.stack3)
 
 class Main(QMainWindow, Ui_Main):
+    """
+    Classe principal que controla a interface do usuário do TaskHub.
+
+    Methods
+    -------
+    __init__(self)
+        Construtor da classe. Inicializa a interface e conecta sinais aos slots.
+    botaoCriaTarefa(self)
+        Manipula o botão de criar tarefa, inserindo uma nova tarefa no banco de dados.
+    usuarioExiste(self, usuario_email)
+        Verifica se um usuário com o email especificado já existe no banco de dados.
+    botaoCadastra(self)
+        Manipula o botão de cadastrar, enviando informações para o servidor e exibindo mensagens.
+    botaoLogin(self)
+        Manipula o botão de login, enviando informações para o servidor e exibindo mensagens.
+    botaoCriar(self)
+        Muda para a tela de criação de tarefas.
+    telaPrinc(self)
+        Retorna para a tela principal.
+    returnIndex(self)
+        Retorna para a tela de login.
+    abrirTelaCadastro(self)
+        Muda para a tela de cadastro.
+    abrirTelaPrincipal(self)
+        Muda para a tela principal.
+    """
+
     def __init__(self):
         super(Main, self).__init__(None)
         self.setupUi(self)
@@ -90,33 +117,33 @@ class Main(QMainWindow, Ui_Main):
         self.tela_principal.listaTodo.setColumnWidth(0, 10)
 
     
-        # Estabeleça uma conexão com o banco de dados
-        connection = create_db_connection("localhost", "root", "z321", "poo2")
+        # # Estabeleça uma conexão com o banco de dados
+        # connection = create_db_connection("localhost", "root", "z321", "poo2")
 
-        # Execute uma consulta SQL para obter todas as tarefas
-        select_query = "SELECT * FROM Tarefas"
-        tarefas = execute_query(connection, select_query)
+        # # Execute uma consulta SQL para obter todas as tarefas
+        # select_query = "SELECT * FROM Tarefas"
+        # tarefas = execute_query(connection, select_query)
 
         # Limpe a tabela antes de adicionar novos itens
         self.tela_principal.listaTodo.setRowCount(0)
 
 
-        if tarefas is not None:
-            for row, tarefa in enumerate(tarefas):
-                self.tela_principal.listaTodo.insertRow(row)
+        # if tarefas is not None:
+        #     for row, tarefa in enumerate(tarefas):
+        #         self.tela_principal.listaTodo.insertRow(row)
 
-                item_widget = QTableWidgetItem(tarefa)
-                self.tela_principal.listaTodo.setItem(row, 1, item_widget)
+        #         item_widget = QTableWidgetItem(tarefa)
+        #         self.tela_principal.listaTodo.setItem(row, 1, item_widget)
 
-                checkbox = QCheckBox()
-                checkbox.setChecked(False)
-                self.tela_principal.listaTodo.setCellWidget(row, 0, checkbox)
+        #         checkbox = QCheckBox()
+        #         checkbox.setChecked(False)
+        #         self.tela_principal.listaTodo.setCellWidget(row, 0, checkbox)
 
                 
-                item_widget = QTableWidgetItem(tarefa[3])
-                self.tela_principal.listaTodo.setItem(row, 2, item_widget)
-        else:
-            print("Nenhuma tarefa encontrada")
+        #         item_widget = QTableWidgetItem(tarefa[3])
+        #         self.tela_principal.listaTodo.setItem(row, 2, item_widget)
+        # else:
+        #     print("Nenhuma tarefa encontrada")
         
         # for row, tarefa in enumerate(pessoal_tarefas):
             #     self.tela_principal.listaTodo.insertRow(row)
@@ -132,16 +159,7 @@ class Main(QMainWindow, Ui_Main):
             #         item_widget = QTableWidgetItem(tempo)
             #         self.tela_principal.listaTodo.setItem(row, 2, item_widget)
 
-    def usuarioExiste(self, usuario_email):
-        connection = create_db_connection("localhost", "root", "z321", "poo2")
-        cursor = connection.cursor()
-
-        select_user_query = f"SELECT * FROM User WHERE email = '{usuario_email}'"
-        cursor.execute(select_user_query)
-        result = cursor.fetchone()
-
-        # Verifique se o usuário existe
-        return result is not None
+   
     
     
 
@@ -154,7 +172,8 @@ class Main(QMainWindow, Ui_Main):
         usuario_email  = self.tela_principal.linha_user.text()
 
         # Verifique se o usuário existe antes de criar a tarefa
-        if self.usuarioExiste(usuario_email):
+        usuario_existe = self.cliente.enviar('3' + '-' + usuario_email)
+        if (usuario_existe == '1'):
             try:
                 # Inicie a transação
                 connection = create_db_connection("localhost", "root", "z321", "poo2")
