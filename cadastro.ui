@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(204, 119, 0); font-size: 28pt;</string>
+     <string notr="true">color: #547dbf; font-size: 28pt;</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::NoFrame</enum>
@@ -39,7 +39,7 @@
      <string>Cadastro</string>
     </property>
     <property name="textFormat">
-     <enum>Qt::MarkdownText</enum>
+     <enum>Qt::PlainText</enum>
     </property>
     <property name="scaledContents">
      <bool>false</bool>
@@ -58,7 +58,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(204, 119, 0); font-size: 15pt;</string>
+     <string notr="true">color: #547dbf; font-size: 15pt;</string>
     </property>
     <property name="text">
      <string>Email</string>
@@ -87,7 +87,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(204, 119, 0); font-size: 15pt;</string>
+     <string notr="true">color: #547dbf; font-size: 15pt;</string>
     </property>
     <property name="text">
      <string>Senha</string>
@@ -129,7 +129,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(204, 119, 0); font-size: 15pt;</string>
+     <string notr="true">color: #547dbf; font-size: 15pt;</string>
     </property>
     <property name="text">
      <string>Usuário</string>
@@ -145,7 +145,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(204, 119, 0); 
+     <string notr="true">color:#547dbf; 
 font: 75 14pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
@@ -162,7 +162,7 @@ font: 75 14pt &quot;MS Shell Dlg 2&quot;;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color:rgb(204, 119, 0);
+     <string notr="true">color:#547dbf;
 font: 75 13pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
@@ -176,7 +176,7 @@ font: 75 13pt &quot;MS Shell Dlg 2&quot;;</string>
      <x>0</x>
      <y>0</y>
      <width>480</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

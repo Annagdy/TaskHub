@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>480</width>
-    <height>608</height>
+    <width>1018</width>
+    <height>715</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color:rgb(204, 119, 0);
+     <string notr="true">color:#547dbf;
 font: 75 13pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
@@ -47,7 +47,7 @@ font: 75 13pt &quot;MS Shell Dlg 2&quot;;</string>
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(204, 119, 0); font-size: 20pt;</string>
+     <string notr="true">color: #547dbf; font-size: 20pt;</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::NoFrame</enum>
@@ -59,7 +59,7 @@ font: 75 13pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>Task</string>
     </property>
     <property name="textFormat">
-     <enum>Qt::MarkdownText</enum>
+     <enum>Qt::PlainText</enum>
     </property>
     <property name="scaledContents">
      <bool>false</bool>
@@ -82,7 +82,7 @@ font: 75 13pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="styleSheet">
      <string notr="true"> font-size: 20pt; color:rgb(54, 54, 54); 
-background-color: rgb(204, 119, 0);
+background-color:#547dbf;
 border-radius: 10px;</string>
     </property>
     <property name="frameShape">
@@ -95,7 +95,7 @@ border-radius: 10px;</string>
      <string>Hub</string>
     </property>
     <property name="textFormat">
-     <enum>Qt::MarkdownText</enum>
+     <enum>Qt::PlainText</enum>
     </property>
     <property name="scaledContents">
      <bool>false</bool>
@@ -117,7 +117,7 @@ border-radius: 10px;</string>
      <cursorShape>ArrowCursor</cursorShape>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(204, 119, 0); font: 20px;</string>
+     <string notr="true">color: #547dbf; font: 20px;</string>
     </property>
     <property name="text">
      <string>Username</string>
@@ -142,7 +142,7 @@ border-radius: 10px;</string>
      <cursorShape>ArrowCursor</cursorShape>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(204, 119, 0); font: 20px;</string>
+     <string notr="true">color: #547dbf; font: 20px;</string>
     </property>
     <property name="text">
      <string>Seja Bem-Vindo,</string>
@@ -159,13 +159,13 @@ border-radius: 10px;</string>
      <rect>
       <x>23</x>
       <y>100</y>
-      <width>431</width>
-      <height>321</height>
+      <width>961</width>
+      <height>471</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family></family>
+      <family>,12</family>
       <pointsize>-1</pointsize>
       <weight>50</weight>
       <italic>false</italic>
@@ -182,7 +182,7 @@ border-radius: 10px;</string>
      <enum>Qt::LeftToRight</enum>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(204, 119, 0); font: 15px, bold;
+     <string notr="true">color: #547dbf; font: 15px, bold;
 border-color: rgb(54, 54, 54);</string>
     </property>
     <property name="frameShape">
@@ -198,15 +198,15 @@ border-color: rgb(54, 54, 54);</string>
      <number>3</number>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="Pessoais">
      <property name="geometry">
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>425</width>
-       <height>241</height>
+       <width>955</width>
+       <height>397</height>
       </rect>
      </property>
      <attribute name="label">
@@ -217,8 +217,8 @@ border-color: rgb(54, 54, 54);</string>
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>401</width>
-        <height>351</height>
+        <width>931</width>
+        <height>381</height>
        </rect>
       </property>
      </widget>
@@ -228,26 +228,26 @@ border-color: rgb(54, 54, 54);</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>425</width>
-       <height>241</height>
+       <width>955</width>
+       <height>397</height>
       </rect>
      </property>
      <attribute name="label">
-      <string>Grupo 1</string>
+      <string/>
      </attribute>
     </widget>
    </widget>
    <widget class="QPushButton" name="Tarefas">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>520</y>
+      <x>130</x>
+      <y>630</y>
       <width>93</width>
       <height>28</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color:rgb(204, 119, 0); font: 15px bold;</string>
+     <string notr="true">color:#547dbf; font: 15px bold;</string>
     </property>
     <property name="text">
      <string>TAREFAS</string>
@@ -256,14 +256,14 @@ border-color: rgb(54, 54, 54);</string>
    <widget class="QPushButton" name="Criar">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>520</y>
+      <x>480</x>
+      <y>630</y>
       <width>93</width>
       <height>28</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color:rgb(204, 119, 0); font: 15px bold;</string>
+     <string notr="true">color:#547dbf; font: 15px bold;</string>
     </property>
     <property name="text">
      <string>CRIAR</string>
@@ -272,14 +272,14 @@ border-color: rgb(54, 54, 54);</string>
    <widget class="QPushButton" name="Perfil">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>520</y>
+      <x>820</x>
+      <y>630</y>
       <width>93</width>
       <height>28</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color:rgb(204, 119, 0); font: 15px bold;</string>
+     <string notr="true">color: #547dbf; font: 15px bold;</string>
     </property>
     <property name="text">
      <string>PERFIL</string>
@@ -291,8 +291,8 @@ border-color: rgb(54, 54, 54);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>480</width>
-     <height>26</height>
+     <width>1018</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>

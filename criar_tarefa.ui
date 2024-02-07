@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>480</width>
-    <height>399</height>
+    <width>697</width>
+    <height>607</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,17 +20,17 @@
    <widget class="QLabel" name="Title">
     <property name="geometry">
      <rect>
-      <x>158</x>
-      <y>8</y>
-      <width>71</width>
-      <height>41</height>
+      <x>30</x>
+      <y>0</y>
+      <width>81</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="autoFillBackground">
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(204, 119, 0); font-size: 20pt;</string>
+     <string notr="true">color: #547dbf; font-size: 20pt;</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::NoFrame</enum>
@@ -54,8 +54,8 @@
    <widget class="QLabel" name="Title_2">
     <property name="geometry">
      <rect>
-      <x>233</x>
-      <y>2</y>
+      <x>100</x>
+      <y>0</y>
       <width>81</width>
       <height>51</height>
      </rect>
@@ -65,7 +65,7 @@
     </property>
     <property name="styleSheet">
      <string notr="true"> font-size: 20pt; color:rgb(54, 54, 54); 
-background-color: rgb(204, 119, 0);
+background-color: #547dbf;
 border-radius: 10px;</string>
     </property>
     <property name="frameShape">
@@ -87,7 +87,7 @@ border-radius: 10px;</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLineEdit" name="title_text">
+   <widget class="QLineEdit" name="title_tarefa">
     <property name="geometry">
      <rect>
       <x>190</x>
@@ -98,23 +98,28 @@ border-radius: 10px;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">border: 0px;
-background-color: rgb(255, 255, 255);</string>
+background-color: rgb(255, 255, 255);
+font-size: 15px;</string>
     </property>
    </widget>
-   <widget class="QDateEdit" name="data_ed">
+   <widget class="QDateEdit" name="data_tarefa">
     <property name="geometry">
      <rect>
       <x>190</x>
-      <y>160</y>
+      <y>150</y>
       <width>271</width>
       <height>31</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">font-size: 15px;
+background-color: white;</string>
+    </property>
    </widget>
-   <widget class="QLineEdit" name="title_taf">
+   <widget class="QLineEdit" name="title">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>30</x>
       <y>90</y>
       <width>151</width>
       <height>31</height>
@@ -124,7 +129,7 @@ background-color: rgb(255, 255, 255);</string>
      <cursorShape>ArrowCursor</cursorShape>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(204, 119, 0); font: 20px;</string>
+     <string notr="true">color: #547dbf; font: 20px;</string>
     </property>
     <property name="text">
      <string>Título da Tarefa</string>
@@ -139,8 +144,8 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QLineEdit" name="date">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>160</y>
+      <x>30</x>
+      <y>150</y>
       <width>161</width>
       <height>31</height>
      </rect>
@@ -149,7 +154,7 @@ background-color: rgb(255, 255, 255);</string>
      <cursorShape>ArrowCursor</cursorShape>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(204, 119, 0); font: 20px;</string>
+     <string notr="true">color:#547dbf; font: 20px;</string>
     </property>
     <property name="text">
      <string>Data de Término</string>
@@ -164,8 +169,8 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QLineEdit" name="grupo">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>230</y>
+      <x>30</x>
+      <y>210</y>
       <width>161</width>
       <height>31</height>
      </rect>
@@ -174,7 +179,7 @@ background-color: rgb(255, 255, 255);</string>
      <cursorShape>ArrowCursor</cursorShape>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(204, 119, 0); font: 20px;</string>
+     <string notr="true">color: #547dbf; font: 20px;</string>
     </property>
     <property name="text">
      <string>Grupo</string>
@@ -189,14 +194,14 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="cancel">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>310</y>
+      <x>130</x>
+      <y>520</y>
       <width>171</width>
       <height>28</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color:rgb(204, 119, 0);
+     <string notr="true">color:#547dbf;
 font: 75 13pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
@@ -206,29 +211,199 @@ font: 75 13pt &quot;MS Shell Dlg 2&quot;;</string>
    <widget class="QPushButton" name="conf">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>310</y>
+      <x>400</x>
+      <y>520</y>
       <width>171</width>
       <height>28</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color:rgb(204, 119, 0);
+     <string notr="true">color:#547dbf;
 font: 75 13pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>CONFIMAR</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="group_name">
+   <widget class="QLineEdit" name="group_tarefa">
     <property name="geometry">
      <rect>
       <x>190</x>
-      <y>230</y>
+      <y>210</y>
       <width>261</width>
       <height>31</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">font-size: 15px;
+background-color: white;</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="status">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>280</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>ArrowCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #547dbf; font: 20px;</string>
+    </property>
+    <property name="text">
+     <string>Status</string>
+    </property>
+    <property name="frame">
+     <bool>false</bool>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="status_tarefa">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>280</y>
+      <width>221</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size: 15px;
+background-color: white;</string>
+    </property>
+    <property name="currentText">
+     <string>A fazer</string>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <item>
+     <property name="text">
+      <string>A fazer</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Fazendo</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Concluída</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QTextEdit" name="descricao_tarefa">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>380</y>
+      <width>281</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size: 15px;
+background-color: white;</string>
+    </property>
+    <property name="html">
+     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:15px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="descricao">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>390</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>ArrowCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #547dbf; font: 20px;</string>
+    </property>
+    <property name="text">
+     <string>Descrição</string>
+    </property>
+    <property name="frame">
+     <bool>false</bool>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="prioridade">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>330</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>ArrowCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #547dbf; font: 20px;</string>
+    </property>
+    <property name="text">
+     <string>Prioridade</string>
+    </property>
+    <property name="frame">
+     <bool>false</bool>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="prioridade_tarefa">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>330</y>
+      <width>221</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size: 15px;
+background-color: white;</string>
+    </property>
+    <property name="currentText">
+     <string>Média</string>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <item>
+     <property name="text">
+      <string>Média</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Baixa</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Alta</string>
+     </property>
+    </item>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -236,7 +411,7 @@ font: 75 13pt &quot;MS Shell Dlg 2&quot;;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>480</width>
+     <width>697</width>
      <height>21</height>
     </rect>
    </property>

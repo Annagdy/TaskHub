@@ -1,8 +1,9 @@
 import sys
 import typing
+import ast
 
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QWidget, QTableWidget, QTableWidgetItem, QCheckBox
+from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QWidget, QTableWidget, QTableWidgetItem, QCheckBox, QAbstractItemView, QHeaderView, QDateEdit
 
 from login_tela import Login_Tela
 from cadastro_tela import Cadastro_Tela
@@ -17,7 +18,9 @@ from cliente import Cliente
 import mysql.connector
 from mysql.connector import Error
 import pandas as pd
-
+import json
+import datetime
+from datetime import date
 
 from database import create_db_connection, create_server_connection, execute_query
 
@@ -51,6 +54,12 @@ class Ui_Main(QtWidgets.QWidget):
         self.Qtstack.addWidget(self.stack1)
         self.Qtstack.addWidget(self.stack2)
         self.Qtstack.addWidget(self.stack3)
+
+class DateEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, date):
+            return obj.isoformat()
+        return super().default(obj)
 
 class Main(QMainWindow, Ui_Main):
     """
@@ -104,145 +113,103 @@ class Main(QMainWindow, Ui_Main):
 
         self.tarefa.conf.clicked.connect(self.botaoCriaTarefa)
 
-        # self.tarefa.conf.clicked.connect(self.botaoConfirmaTarefa)
+        # self.login_tela.confirmarLogin.clicked.connect(exibir_tarefas(self))
+
+        # # self.login_tela.confirmarLogin.clicked.connect(exibir_tarefas(self))
+
+        # self.tarefa.conf.clicked.connect(mostrar_tarefas(self))
+
+        self.login_tela.confirmarLogin.clicked.connect(self.mostrar_tarefas)
+
+        self.tarefa.conf.clicked.connect(self.mostrar_tarefas)
 
 
-        # pessoal_tarefas = ["Fazer POO2", "Fazer ED2"]
-        # tarefas_tempo = ["terça, 14", "quinta, 19"]
-        self.tela_principal.listaTodo.setColumnCount(3)
-
-        self.tela_principal.listaTodo.horizontalHeader().setVisible(False)
-        self.tela_principal.listaTodo.verticalHeader().setVisible(False)
-
-        self.tela_principal.listaTodo.setColumnWidth(0, 10)
-
-    
-        # # Estabeleça uma conexão com o banco de dados
-        # connection = create_db_connection("localhost", "root", "z321", "poo2")
-
-        # # Execute uma consulta SQL para obter todas as tarefas
-        # select_query = "SELECT * FROM Tarefas"
-        # tarefas = execute_query(connection, select_query)
-
-        # Limpe a tabela antes de adicionar novos itens
-        self.tela_principal.listaTodo.setRowCount(0)
-
-
-        # if tarefas is not None:
-        #     for row, tarefa in enumerate(tarefas):
-        #         self.tela_principal.listaTodo.insertRow(row)
-
-        #         item_widget = QTableWidgetItem(tarefa)
-        #         self.tela_principal.listaTodo.setItem(row, 1, item_widget)
-
-        #         checkbox = QCheckBox()
-        #         checkbox.setChecked(False)
-        #         self.tela_principal.listaTodo.setCellWidget(row, 0, checkbox)
-
-                
-        #         item_widget = QTableWidgetItem(tarefa[3])
-        #         self.tela_principal.listaTodo.setItem(row, 2, item_widget)
-        # else:
-        #     print("Nenhuma tarefa encontrada")
+    def mostrar_tarefas(self):
         
-        # for row, tarefa in enumerate(pessoal_tarefas):
-            #     self.tela_principal.listaTodo.insertRow(row)
+        #Obtenha o email do usuário logado
+        usuario_email = self.login_tela.email_linha.text()
 
-            #     item_widget = QTableWidgetItem(tarefa)
-            #     self.tela_principal.listaTodo.setItem(row, 1, item_widget)
+        # Obtenha as tarefas do usuário
+        tarefas = self.cliente.enviar('5' + '-' + usuario_email)
 
-            #     checkbox = QCheckBox()
-            #     checkbox.setChecked(False)
-            #     self.tela_principal.listaTodo.setCellWidget(row, 0, checkbox)
+        # Junte a string e remova os caracteres desnecessários
+        tarefas_str = ''.join(tarefas).replace('[(', '').replace(')]', '')
 
-            #     for row, tempo in enumerate(tarefas_tempo):
-            #         item_widget = QTableWidgetItem(tempo)
-            #         self.tela_principal.listaTodo.setItem(row, 2, item_widget)
+        # Divida a string em partes
+        tarefas_parts = tarefas_str.split(',')
 
-   
+        # Converta as partes em uma tupla
+        ano, mes, dia = map(int, (tarefas_parts[4].replace(' datetime.date(', ''), tarefas_parts[5], tarefas_parts[6].replace(')', '')))
+        data = datetime.date(ano, mes, dia)
+        tarefas_tuple = (int(tarefas_parts[0]), tarefas_parts[1].strip(), tarefas_parts[2].strip(), tarefas_parts[3].strip(), data, tarefas_parts[7].strip(), tarefas_parts[8].strip(), tarefas_parts[9].strip())
+        # Coloque a tupla em uma lista
+        tarefas = [tarefas_tuple]
+
+        self.tela_principal.listaTodo.setRowCount(len(tarefas))
+        self.tela_principal.listaTodo.setColumnCount(6)
+
+        
+        self.tela_principal.listaTodo.setHorizontalHeaderLabels(['Título', 'Data Final', 'Prioridade', 'Status', 'Descrição','Criador'])
+        
     
+        #mudar largura das colunas
+        self.tela_principal.listaTodo.setColumnWidth(0, 250)
+        self.tela_principal.listaTodo.setColumnWidth(1, 150)
+        self.tela_principal.listaTodo.setColumnWidth(2, 120)
+        self.tela_principal.listaTodo.setColumnWidth(3, 120)
+        self.tela_principal.listaTodo.setColumnWidth(4, 400)
+        self.tela_principal.listaTodo.setColumnWidth(5, 150)
+        
+        # Coloque os dados na tabela
+        # for i in range (0, len(tarefas)):
+        #     for j in range (0, 6):
+        #         self.tela_principal.listaTodo.setItem(i, j, QTableWidgetItem(tarefas[i][j]))
+
+
+
+            
+
+        # self.tela_principal.listaTodo.setItem(0, 0, QTableWidgetItem(tarefas[0][0]))
+
+        # for i in range (0, len(tarefas)):
+        #     for j in range (0, 6):
+        #         self.tela_principal.listaTodo.setItem(i, j, QTableWidgetItem(tarefas[i][j]))
+
+        
+        
+
+
+        # #colocar tabela no qttablewidget
+        # self.tela_principal.listaTodo.setColumnCount(6)
+        # self.tela_principal.listaTodo.setHorizontalHeaderLabels(['Título', 'Data Final', 'Prioridade', 'Status', 'Descrição','Criador'])
+        
     
+        # #mudar largura das colunas
+        # self.tela_principal.listaTodo.setColumnWidth(0, 250)
+        # self.tela_principal.listaTodo.setColumnWidth(1, 150)
+        # self.tela_principal.listaTodo.setColumnWidth(2, 120)
+        # self.tela_principal.listaTodo.setColumnWidth(3, 120)
+        # self.tela_principal.listaTodo.setColumnWidth(4, 400)
+        # self.tela_principal.listaTodo.setColumnWidth(5, 150)
 
-    def botaoCriaTarefa(self):
-        titulo = self.tarefa.title_taf.text()
-        data = self.tarefa.date.text()
-        grupo = self.tarefa.group_name.text()
+        # self.Qtstack.currentChanged.connect(self.exibir_tarefas_na_tela)
 
-        # Certifique-se de que o usuário está autenticado (substitua 'email' pelo email real do usuário autenticado)
-        usuario_email  = self.tela_principal.linha_user.text()
-
-        # Verifique se o usuário existe antes de criar a tarefa
-        usuario_existe = self.cliente.enviar('3' + '-' + usuario_email)
-        if (usuario_existe == '1'):
-            try:
-                # Inicie a transação
-                connection = create_db_connection("localhost", "root", "z321", "poo2")
-                cursor = connection.cursor()
-
-                # Inserir tarefa
-                insert_task_query = f"INSERT INTO Tarefas (descricao, status, usuario_email) VALUES ('{titulo}', 'pendente', '{usuario_email}')"
-                cursor.execute(insert_task_query)
-
-                # Commit da transação se tudo ocorrer sem problemas
-                connection.commit()
-
-                QMessageBox.information(None, 'TaskHub', 'Tarefa Criada com Sucesso!')
-                self.tarefa.title_taf.setText('')
-                self.tarefa.date.setText('')
-                self.tarefa.group_name.setText()
-
-                # Atualize a tabela na tela principal (se necessário)
-                self.atualizarTabela()
-
-            except Exception as e:
-                # Em caso de erro, reverta a transação
-                print(f"Error: {e}")
-                connection.rollback()
-
-            finally:
-                # Feche a conexão
-                if connection.is_connected():
-                    cursor.close()
-                    connection.close()
-        else:
-            QMessageBox.information(None, 'TaskHub', 'Usuário não encontrado. Faça o login novamente.')
-
-        self.Qtstack.setCurrentIndex(2)
+        # self.tela_principal.listaTodo.setRowCount(0)
+        
 
 
-    # def botaoCriaTarefa(self):
-    #     titulo = self.tarefa.title_taf.text()
-    #     data = self.tarefa.date.text()
-    #     grupo = self.tarefa.group_name.text()
+        # self.tela_principal.listaTodo.setColumnCount(3)
 
-    #     #quero que a tarefa seja cadastrada na tabela de tarefas do banco de dados(conecte a tabela tarefas)
-    #     #e que seja mostrada na tela principal
-    #     # CREATE TABLE Tarefas (
-    #     #     id INT PRIMARY KEY AUTO_INCREMENT,
-    #     #     descricao TEXT,
-    #     #     status VARCHAR(20) DEFAULT 'pendente',
-    #     #     usuario_email VARCHAR(255),
-    #     #     FOREIGN KEY (usuario_email) REFERENCES User(email)
-    #     # );
-    #     if not(titulo == '' or data == '' or grupo == '' or titulo == ' ' or data == ' ' or grupo == ' '):    
-    #         #conexao com o banco de dados para salvar a tarefa
-    #         connection = create_db_connection("localhost", "root", "z321", "poo2")
+        # self.tela_principal.listaTodo.horizontalHeader().setVisible(False)
+        # self.tela_principal.listaTodo.verticalHeader().setVisible(False)
 
-    #         insert_query = f"INSERT INTO Tarefas (descricao, status, usuario_email) VALUES ('{titulo}', 'pendente', 'email')"
+        # self.tela_principal.listaTodo.setColumnWidth(0, 10)
 
-    #         execute_query(connection, insert_query)
-
-    #         if self.cad.cadastra(titulo, data, grupo):
-    #             QMessageBox.information(None, 'TaskHub', 'Tarefa Criada com Sucesso!')
-    #             self.tarefa.title_taf.setText('')
-    #             self.tarefa.date.setText('')
-    #             self.tarefa.group_name.setText('')
-    #         else:
-    #             QMessageBox.information(None, 'TaskHub', 'Tarefa Não Criada')
-    #     else:
-    #         QMessageBox.information(None, 'TaskHub', 'Preencha Todos os Campos!')
-
-    #     self.Qtstack.setCurrentIndex(2)
+    
+  
+        # self.tela_principal.listaTodo.setRowCount(0)
+    
+        
 
     
     def botaoCadastra(self):
@@ -282,47 +249,79 @@ class Main(QMainWindow, Ui_Main):
         if resposta != '0':
             #pegar nome do usuario
             username = self.cliente.enviar('2' + '-' + email + '-' + senha)
+
+            # Obtenha o email do usuário logado
+            usuario_email = self.login_tela.email_linha.text()
+
+            # Obtenha as tarefas do usuário
+            tarefas = self.cliente.enviar('5' + '-' + usuario_email)
+
+
+            print(str(len(tarefas)) + 'aqui')
+
+            # for i in range (0, len(tarefas)):
+            #     for j in range (0, 6):
+            #         self.tela_principal.listaTodo.setItem(i, j, QTableWidgetItem(tarefas[i][j]))
+
+            
+
             QMessageBox.information(None, 'TaskHub', 'Login Realizado com Sucesso!')
             self.Qtstack.setCurrentIndex(2)
             self.tela_principal.linha_user.setText(username)
-            self.login_tela.email_linha.setText('')
             self.login_tela.senha_linha.setText('')
         else:
             QMessageBox.information(None, 'TaskHub', 'Email ou Senha Incorretos!')
-            self.login_tela.email_linha.setText('')
-            self.login_tela.senha_linha.setText('')
+        
+        
 
+            
 
-        # if not(email == '' or senha == ''):
-        #     connection = create_db_connection("localhost", "root", "z321", "poo2")
+    def botaoCriaTarefa(self):
+        usuario_email = self.login_tela.email_linha.text()
 
-        #     select_query = f"SELECT * FROM User WHERE email = '{email}' AND senha = '{senha}'"
-        #     cursor = connection.cursor()
-        #     cursor.execute(select_query)
-        #     result = cursor.fetchone()
-
-        #     if result:
-        #         usuario, _, _ = result  # Os dados estão na ordem da consulta
-        #         QMessageBox.information(None, 'TaskHub', 'Login Realizado com Sucesso!')
-        #         self.Qtstack.setCurrentIndex(2)
-        #         self.tela_principal.linha_user.setText(usuario)
-                        
-        #         self.login_tela.email_linha.clear()
-        #         self.login_tela.senha_linha.clear()
-        #     else:
-        #         self.Qtstack.setCurrentIndex(0)
-        #         QMessageBox.information(None, 'TaskHub', 'Email ou Senha Incorretos!')
+        # Verifique se o usuário existe antes de criar a tarefa
+        usuario_existe = self.cliente.enviar('4' + '-' + usuario_email)
+        
+        # Inicialize 'recebeu' antes do bloco try
+        recebeu = None
+        
+        try:
+            if usuario_existe == '1':
                 
-        #         self.login_tela.email_linha.clear()
-        #         self.login_tela.senha_linha.clear()
+                # Crie a tarefa
+                titulo = self.tarefa.title_tarefa.text()
+                descricao = self.tarefa.descricao_tarefa.toPlainText()
+                # Correção: Converta QDate para string usando toString
+                data_final = self.tarefa.data_tarefa.date().toString('yyyy-MM-dd')
+            
 
+                prioridade = self.tarefa.prioridade_tarefa.currentText()
+                grupo = self.tarefa.group_tarefa.text()
+                status = self.tarefa.status_tarefa.currentText()
+            
+                msg = '3' + '-' + titulo + '-' + descricao + '-' + data_final + '-' + prioridade + '-' + grupo + '-' + status + '-' + usuario_email
 
+                # Atualize 'recebeu' aqui
+                recebeu = self.cliente.enviar(msg)
+
+            # Verifique o valor de 'recebeu' aqui e tome as ações apropriadas
+            if recebeu == '1':
+                QMessageBox.information(None, 'TaskHub', 'Tarefa criada com sucesso!')
+            else:
+                QMessageBox.information(None, 'TaskHub', 'Erro ao criar tarefa. Tente novamenteeee.')
+
+        except Exception as e:
+            print(f"Erro ao criar tarefa: {e}")
+        
+
+       
 
     def botaoCriar(self):
         self.Qtstack.setCurrentIndex(3)
     
     def telaPrinc(self):
         self.Qtstack.setCurrentIndex(2)
+        
 
     def returnIndex(self):
         self.Qtstack.setCurrentIndex(0)
@@ -332,6 +331,46 @@ class Main(QMainWindow, Ui_Main):
 
     def abrirTelaPrincipal(self):
         self.Qtstack.setCurrentIndex(2)
+
+# def exibir_tarefas(self):
+#     # Obtenha o email do usuário logado
+#     usuario_email = self.login_tela.email_linha.text()
+    
+#     # Obtenha as tarefas do usuário
+#     tarefas = self.cliente.enviar('5' + '-' + usuario_email)
+    
+    
+#     Tela_Principal.listaTodo.setRowCount(len(tarefas))
+#     Tela_Principal.listaTodo.setColumnCount(6)
+
+#     for i in range (0, len(tarefas)):
+#         for j in range (0, 6):
+#             Tela_Principal.listaTodo.setItem(i, j, QTableWidgetItem(tarefas[i][j]))
+
+#         def mostrar_tarefas(self):
+#             # Obtenha o email do usuário logado
+#             usuario_email = self.login_tela.email_linha.text()
+            
+#             # Obtenha as tarefas do usuário
+#             tarefas = self.cliente.enviar('5' + '-' + usuario_email)
+            
+#             Tela_Principal.show() 
+#             Tela_Principal.listaTodo.setRowCount(len(tarefas))
+#             # #colocar tabela no qttablewidget
+#             self.tela_principal.listaTodo.setColumnCount(6)
+#             self.tela_principal.listaTodo.setHorizontalHeaderLabels(['Título', 'Data Final', 'Prioridade', 'Status', 'Descrição','Criador'])
+        
+#             #mudar largura das colunas
+#             self.tela_principal.listaTodo.setColumnWidth(0, 250)
+#             self.tela_principal.listaTodo.setColumnWidth(1, 150)
+#             self.tela_principal.listaTodo.setColumnWidth(2, 120)
+#             self.tela_principal.listaTodo.setColumnWidth(3, 120)
+#             self.tela_principal.listaTodo.setColumnWidth(4, 400)
+#             self.tela_principal.listaTodo.setColumnWidth(5, 150)
+    
+#             for i in range (0, len(tarefas)):
+#                 for j in range (0, 6):
+#                     Tela_Principal.listaTodo.setItem(i, j, QTableWidgetItem(tarefas[i][j]))
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

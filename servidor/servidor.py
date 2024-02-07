@@ -59,12 +59,56 @@ def tratar_mensagem(mensagem):
             envia = banco.obter_nome_usuario_logado()
         else:
             envia = '0'
+    # Command '3' - cadastrar_tarefa
     elif l[0] == '3':
-        #verifica se o usuário existe
-        if banco.usuarioExiste(l[1]):
+        try:
+            if len(l) >= 8:
+                titulo = l[1]
+                descricao = l[2]
+                data = l[3]
+                prioridade = l[4]
+                grupo = l[5]
+                status = l[6]
+                email = l[9]
+                print(l)
+                try:
+                    if banco.usuarioExiste(email):
+                        # Usuário existe, então cadastre a tarefa
+                        recebeu = banco.cadastrar_tarefa(titulo, descricao, data, prioridade, grupo, status, email)
+                        if recebeu == '1':
+                            envia = '1'
+                            print(f'Nova tarefa criada: {titulo}')
+                        else:
+                            envia = '0'
+                    else:
+                        # Usuário não existe, levanta uma exceção
+                        raise ValueError('Usuário não encontrado. Cadastre o usuário antes de criar a tarefa.' + email)
+                except Exception as e:
+                    # Trate a exceção e forneça uma mensagem de erro adequada
+                    envia = '0'
+                    print(f"Erro ao cadastrar tarefa: {e}")
+
+        except Exception as e:
+            print(f"Erro ao criar tarefa: {e}")
+            envia = '0'  # Handle the exception and set envia to '0' or another suitable value
+
+
+    elif l[0] == '4':
+        #verifica se o email existe
+        if banco.emailExiste(l[1]):
             envia = '1'
         else:
             envia = '0'
+    elif l[0] == '5':
+        #envia a tabela de tarefas
+        email = l[1]
+        try:
+            envia = banco.obter_tarefas(email)
+        except Exception as e:
+            print(f"Erro server  ao obter tarefas: {e}")
+            envia = '0'
+        
+
     else:
         envia = "Comando inválido"
 
@@ -119,6 +163,9 @@ class ClientThread(threading.Thread):
                 self.con.send(enviar.encode())
                 break
             else:
+                # Garanta que enviar seja uma string antes de chamar encode()
+                if isinstance(enviar, list):
+                    enviar = str(enviar)
                 self.con.send(enviar.encode())
 
 if __name__ == "__main__":

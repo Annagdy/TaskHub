@@ -42,7 +42,7 @@ class Cliente:
         """
 
         # Configuração inicial do cliente
-        self.ip = '192.168.1.19'
+        self.ip = '192.168.1.14'
         self.port = 8087
         self.address = (self.ip, self.port)
         self.cliente_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

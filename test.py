@@ -1,0 +1,5 @@
+from datetime import date
+#tarefas: ['[(7', " 'T�tulo da Tarefa'", " 'pendente'", " 'a'", ' None', ' None', ' None', ' None)', ' (8', " 'T�tulo da Tarefa'", " 'pendente'", " 'a'", ' None', ' None', ' None', ' None)', ' (14', " 'aaaaaa'", " 'M�dia'", " 'a'", ' datetime.date(2000', ' 1', ' 1)', " '01'", " 'aaa'", " '01')", ' (15', " 'adada'", " 'Baixa'", " 'a'", ' datetime.date(2000', ' 1', ' 1)', " '01'", " 'a'", " '01')]"]
+
+tarefas = ['[(7', " 'T�tulo da Tarefa'", " 'pendente'", " 'a'", ' None', ' None', ' None', ' None)', ' (8', " 'T�tulo da Tarefa'", " 'pendente'", " 'a'", ' None', ' None', ' None', ' None)', ' (14', " 'aaaaaa'", " 'M�dia'", " 'a'", ' datetime.date(2000', ' 1', ' 1)', " '01'", " 'aaa'", " '01')", ' (15', " 'adada'", " 'Baixa'", " 'a'", ' datetime.date(2000', ' 1', ' 1)', " '01'", " 'a'", " '01')]"]
+print(len(tarefas))
